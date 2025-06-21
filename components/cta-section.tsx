@@ -1,27 +1,28 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { ArrowRight, Download, Calendar, Star } from "lucide-react"
-
+export type ButtonVariant =
+  | "default"
+  | "destructive"
+  | "outline"
+  | "secondary"
+  | "ghost"
+  | "link"
+  | "primary";
 interface CTAButton {
   text: string
   url: string
-  icon: React.ReactNode
-  variant: "primary" | "secondary" | "outline"
+  icon: keyof typeof iconMap
+  variant: ButtonVariant
   description?: string
 }
 
 interface CTASectionProps {
   title: string
   subtitle: string
-  buttons: Array<{
-    text: string
-    url: string
-    icon: string
-    variant: "primary" | "secondary" | "outline"
-    description?: string
-  }>
+  buttons: Array<CTAButton>
 }
 
 const iconMap: Record<string, React.ReactNode> = {
